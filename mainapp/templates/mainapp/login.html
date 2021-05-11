@@ -1,0 +1,14 @@
+{% include 'layout/layout.html' %}
+{% load static %}
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+            <input type="text" id="fname" name="username" placeholder="Nombre de Usuario">
+            <br>
+            <input type="password" id="fname" name="password" placeholder="Contraseña">
+            <br>
+            <input type="submit" value="Inicia Sesión" >
+    </form>
+    <!-- end section -->
+    {% include 'layout/footer.html' %}    
+</body>

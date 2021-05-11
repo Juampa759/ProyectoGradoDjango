@@ -1,0 +1,16 @@
+{% extends 'layout/layout.html' %}
+
+{% block title %}{{pregunta.pregunta}}{% endblock title %}{{title}}
+
+{% block content %}
+
+    <h1>{{pregunta.pregunta}}</h1>
+    <ul>
+    {% for respuesta in respuestas %}
+        
+            <li>{{respuesta.respuesta}}</li>
+        
+    {% endfor %}
+    </ul>
+
+{% endblock content %}
