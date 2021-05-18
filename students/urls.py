@@ -4,4 +4,5 @@ from . import views
 urlpatterns = [
     path('datosjson/', views.datosJson, name="datosjson"),
     path('listapreguntas/', views.listpreguntas, name="preguntas"),
+    path('pregJson/', views.pregJson, name="Pregunta"),
 ]

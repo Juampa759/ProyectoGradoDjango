@@ -13,6 +13,11 @@ from django.contrib.messages.views import SuccessMessageMixin
 import io
 from os import curdir, sep
 
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+
+
+
 # Create your views here.
 
 def index(request):

@@ -1,10 +1,12 @@
 from django.contrib import admin
-from students.models import User, preguntas, Respuestas 
+from students.models import preguntas, Respuesta, PregResp, RespUsu
 
 # Register your models here.
 
 
 
-admin.site.register(User)
+
 admin.site.register(preguntas)
-admin.site.register(Respuestas)
+admin.site.register(Respuesta)
+admin.site.register(PregResp)
+admin.site.register(RespUsu)

@@ -155,6 +155,7 @@ watchdog @ file:///C:/ci/watchdog_1593446204230/work
 wcwidth @ file:///tmp/build/80754af9/wcwidth_1593447189090/work
 webencodings==0.5.1
 Werkzeug==1.0.1
+whitenoise==5.2.0
 win-inet-pton==1.1.0
 wincertstore==0.2
 wrapt==1.11.2

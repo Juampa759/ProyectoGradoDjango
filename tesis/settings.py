@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '08zj!vz$_s=!@l)5v32n1xqkube2)$pabz52*h%1ofkt3a!^(u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = Flase
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [*]
 
 STATICFILES_DIRS=['C:/ProyectosDjango/tesis/mainapp/templates/static']
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'save_q',
     'red_estudiantes',
     'students',
+    'pregPrueba',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'tesis.urls'
@@ -78,15 +80,24 @@ WSGI_APPLICATION = 'tesis.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'tesis',
+#        'USER': 'postgres',
+#        'PASSWORD': '1234',
+#        'HOST': 'localhost',
+#        'DATABASE_PORT': '5432',
+#    }
+#}
+import dj_database_url
+from decouple import  config 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'tesis',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
-        'DATABASE_PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
+
+
 }
 
 
@@ -136,3 +147,6 @@ EMAIL_PORT = 25
 EMAIL_HOST_USER = 'predes.js@gmail.com'
 EMAIL_HOST_PASSWORD = 'Predesjuan2'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

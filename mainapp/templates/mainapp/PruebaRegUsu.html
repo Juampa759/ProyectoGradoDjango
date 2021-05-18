@@ -8,6 +8,7 @@
 			<fieldset class="row">
 				<table>
 					<div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12"></div>
+						{% csrf_token %}
 						{{ form.as_table }}
 						<br>
 					</div>

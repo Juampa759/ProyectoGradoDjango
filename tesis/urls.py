@@ -17,11 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 from mainapp import views
 
+from django.confing import settings
+from django.config.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('mainapp.urls')),
     path('',include('save_q.urls')),
     path('',include('red_estudiantes.urls')),
     path('',include('students.urls')),
-]
+    path('',include('pregPrueba.urls')),
+]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
