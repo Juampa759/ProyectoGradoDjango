@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 class person(models.Model):
     User = models.ForeignKey(User, verbose_name="Usuario", on_delete= models.CASCADE)
     pregunta = models.IntegerField()
+    score = models.IntegerField()
 
 class pregunta(models.Model):
     pregunta = models.CharField(max_length=500)

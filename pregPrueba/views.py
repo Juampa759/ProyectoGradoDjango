@@ -14,12 +14,10 @@ def preguntaJson(request):
         #aqui verifico si ya ha respondido preguntas antes, si no creo el id de la pregunta y lo inicializo en 1
         try:
             usu = person.objects.get(User_id=usuId)
-            print( "existe")
-            
+
         except:
-            print("No Existe")
             persona = person(pregunta = 1,
-                User_id=usuId,)
+                User_id=usuId, score = 0)
             persona.save()
         try:    
             #aqui verifico en que id de la pregunta está el usuario 
@@ -55,9 +53,26 @@ def sigPreJson(request):
         #aqui aumento el numero de la pregunta en 1 para que proceda con la siguiente pregunta
     
         persona = person(id=usu.id,
-            pregunta = int(usu.pregunta+1),User_id=usuId,)
+            pregunta = int(usu.pregunta+1),User_id=usuId, score = 0)
         persona.save()
         msn={'msn':'Todo correcto y guardado'}
     else:
         msn={'msn':'No hay mas preguntas'}
     return JsonResponse(msn)    
+
+def newRecord(request):
+    msn={'msn':''}
+    if(request.method == 'GET'):   
+        #aqui llamo a la tabla person donde user = usuId y guardo la respuesta del usuario
+        usuId = request.GET.get('id')
+        score  = request.GET.get('score')
+        preg  = request.GET.get('preg')
+        usu = person.objects.get(User_id=usuId)
+        #aqui aumento el numero de la pregunta en 1 para que proceda con la siguiente pregunta
+    
+        persona = person(id=usu.id,User_id=usuId, pregunta=preg, score = score)
+        persona.save()
+        msn={'msn':'Todo correcto y guardado'}
+    else:
+        msn={'msn':'No hay mas preguntas'}
+    return JsonResponse(msn) 

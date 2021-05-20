@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core import serializers
 from django.http import HttpResponse
 from students.models import preguntas, Respuesta, PregResp, RespUsu
+from pregPrueba.models import person
 
 # Create your views here.
 
@@ -17,13 +18,21 @@ def datosJson(request):
         username = request.GET.get('usr')
         password = request.GET.get('pass')
         user = authenticate(request, username=username, password=password)
+        #aqui creo el id de la pregunta del usuario y su score
         if(user is not None):
+            try:
+                usur = person.objects.get(User_id=user.id)
+            except:
+                persona = person(pregunta = 1,User_id=user.id, score = 0)
+                persona.save()
             msn = {
                 'id':user.id,
                 'usuario':user.username,
                 'Nombre':user.first_name,
                 'Apellido':user.last_name,
                 'Correo':user.email,
+                'score':usur.score,
+                'pregunta':usur.pregunta,
                 "msn":"Bienvenido",
             }
         else:

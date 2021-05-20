@@ -27,5 +27,5 @@ urlpatterns = [
     path('',include('red_estudiantes.urls')),
     path('',include('students.urls')),
     path('',include('pregPrueba.urls')),
-]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
 
